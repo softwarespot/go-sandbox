@@ -1,0 +1,4 @@
+github.com/mattn/go-sqlite3 v1.14.28 h1:ThEiQrnbtumT+QMknw63Befp/ce/nUPgBPMlRFEum7A=
+github.com/mattn/go-sqlite3 v1.14.28/go.mod h1:Uh1q+B4BYcTPb+yiD3kU8Ct7aC0hY9fxUwlHK0RXw+Y=
+github.com/nalgeon/redka v0.5.3 h1:smESVCAVxdJXvSTOrwP2oH8xqA+FE2F41hcRLANRtHw=
+github.com/nalgeon/redka v0.5.3/go.mod h1:vLxjY3XS9IwBID2YEFWeeMiN4Ar/DtKd4JW62JTAxuU=

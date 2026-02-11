@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+    <head>
+        <title>TOTP Generator and Validator</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            img {
+                max-width: 200px;
+            }
+
+            input,
+            button {
+                margin: 10px 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>TOTP Generator and Validator</h1>
+        <div id="generator">
+            <h2>Generate TOTP</h2>
+            <input type="email" id="email" placeholder="Enter your email" required />
+            <button onclick="generateTOTP()">Generate New TOTP</button>
+            <div id="totpResult"></div>
+        </div>
+        <div id="validator">
+            <h2>Validate TOTP</h2>
+            <input type="text" id="passcode" placeholder="Enter passcode" />
+            <button onclick="validateTOTP()">Validate</button>
+            <div id="validationResult"></div>
+        </div>
+        <script>
+            function generateTOTP() {
+                const email = document.getElementById('email').value;
+                if (!email) {
+                    alert('Please enter an email address');
+                    return;
+                }
+
+                fetch('/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `email=${encodeURIComponent(email)}`,
+                })
+                    .then((response) => response.json())
+                    .then(({ secret, qrCodeB64 }) => {
+                        const resEl = document.getElementById('totpResult');
+                        resEl.innerHTML = `
+                        <p>Secret: ${secret}</p>
+                        <img src="data:image/png;base64,${qrCodeB64}" alt="QR Code">
+                        <p>Scan this QR code with your TOTP app</p>
+                    `;
+                    });
+            }
+
+            function validateTOTP() {
+                const email = document.getElementById('email').value;
+                if (!email) {
+                    alert('Please enter an email address');
+                    return;
+                }
+                const passcode = document.getElementById('passcode').value;
+                if (!passcode) {
+                    alert('Please enter a passcode');
+                    return;
+                }
+
+                fetch('/validate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `email=${encodeURIComponent(email)}&passcode=${encodeURIComponent(passcode)}`,
+                })
+                    .then((response) => response.text())
+                    .then((result) => {
+                        document.getElementById('validationResult').innerText = result;
+                    });
+            }
+        </script>
+    </body>
+</html>

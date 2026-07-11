@@ -1,0 +1,5 @@
+Doc version 3.1;;
+App1;0.0.0;0.1.0;http://127.0.0.1:8080/test.html;false;<;Zip ;;;;0.2.0;INFORMATION;TAG1
+7-Zip;26.02;26.02;https://www.7-zip.org/;false; ;Zip ;;;;0.2.0;INFORMATION;TAG1,TAG2
+SoundVolumeView;2.52;2.53;https://www.nirsoft.net/utils/sound_volume_view.html;false; ;SoundVolumeView v;;;;0.2.0;INFORMATION;TAG2
+RegCool;3.1.0.0;3.1.0.0;https://kurtzimmermann.com/downrc_en.html;false;<;Version ;;;;0.2.0;INFORMATION;TAG2
